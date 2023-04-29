@@ -108,6 +108,27 @@ class linkedList {
     return null;
   }
 
+  reverse() {
+    //Keep pointer for tracker
+    //Keep pointer for reversed list
+    let tracker = this.head;
+    let reverseTracker = null;
+    let setTail = false;
+    while (tracker) {
+    //5 > 4 > 3 > 2 > 1 > Null
+      let current = tracker.next;
+      tracker.next = reverseTracker;
+      reverseTracker = tracker;
+      if (!setTail) {
+        this.tail = reverseTracker;
+        setTail = true;
+      }
+      tracker = current;
+    }
+    this.head = reverseTracker;
+    //1 > 2 > 3 > 4 > 5 > Null
+  }
+
   print() {
     if(this.isEmpty()){
       console.log('Empty List');
@@ -134,4 +155,7 @@ list.insert(69,1);
 list.remove(0);
 list.removeValue(3);
 console.log('Size:  ', list.getSize())
+list.print();
+list.reverse();
+list.append(10);
 list.print();
