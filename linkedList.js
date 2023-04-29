@@ -11,14 +11,16 @@ class linkedList {
     this.tail = null;
     this.size = 0;
   }
-
+  //O(1)
   isEmpty() {
     return !this.size;
   }
+
+  //O(1)
   getSize() {
     return this.size;
   }
-
+  //O(1)
   prepend(value) {
     const headVal = new node(value);
     if (this.isEmpty()) {
@@ -30,7 +32,7 @@ class linkedList {
     }
     this.size++;
   }
-
+  //O(1)
   append(value) {
     const tailVal = new node(value);
     if (this.isEmpty()) {
@@ -42,7 +44,40 @@ class linkedList {
     }
     this.size++;
   }
+  //O(1)
+  removeFromFront () {
+    if(this.isEmpty()) {
+      return;
+    }
+    if (this.size === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+    }
+    this.size--;
+    return;
+  }
 
+  //O(n)
+  removeFromBack () {
+    if (this.isEmpty()) {
+      return;
+    }
+    if (this.size === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      let tracker = this.head;
+      while (tracker.next !== this.tail) {
+        tracker = tracker.next;
+      }
+      tracker.next = null;
+      this.tail = tracker
+    }
+    this.size--
+  }
+  //O(n)
   insert(value, index) {
     if (index < 0 || index > this.size) {
       return;
@@ -60,7 +95,7 @@ class linkedList {
     tracker.next = insertValue;
     this.size++;
   }
-
+  //O(n)
   remove (index) {
     if (index < 0 || index > this.size) {
       return;
@@ -81,7 +116,7 @@ class linkedList {
     }
     this.size--;
   }
-
+  //O(n)
   removeValue (value) {
     if (this.isEmpty()) {
       return null;
@@ -108,6 +143,7 @@ class linkedList {
     return null;
   }
 
+  //O(n)
   reverse() {
     //Keep pointer for tracker
     //Keep pointer for reversed list
@@ -129,6 +165,7 @@ class linkedList {
     //1 > 2 > 3 > 4 > 5 > Null
   }
 
+  //O(n)
   print() {
     if(this.isEmpty()){
       console.log('Empty List');
