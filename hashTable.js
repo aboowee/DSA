@@ -12,15 +12,39 @@ class hashTable {
   }
   set(key, value) {
     let index = this.hash(key);
-    this.table[index] = value;
+    if (!this.table[index]) {
+      this.table[index] = [[key,value]];
+    } else {
+      const exists = this.table[index].find(item => item[0] === key);
+      if (exists) {
+        exists[1] = value;
+      } else {
+        this.table[index].push([key,value]);
+      }
+    }
   }
   get(key) {
     let index = this.hash(key);
-    return this.table[index];
+    if (this.table[index]) {
+      const exists = this.table[index].find(item => item[0] === key);
+      if (exists) {
+        return exists[1];
+      }
+    }
+    return null;
   }
   remove(key) {
     let index = this.hash(key);
-    this.table[index] = null;
+    if (this.table[index]) {
+      for (let i = 0; i < this.table[index].length; i++) {
+        if (this.table[index][i][0] === key) {
+          this.table[index].splice(i , 1);
+        }
+      }
+      if(!this.table[index].length) {
+        this.table[index] = null;
+      }
+    }
   }
   display() {
     for (let i = 0; i < this.table.length; i++) {
@@ -37,4 +61,4 @@ table.set('fruit', 'orange');
 console.log(table.get('chair'));
 table.display();
 table.remove('fruit')
-table.display();
+// table.display();
