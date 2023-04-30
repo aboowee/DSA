@@ -192,7 +192,12 @@ list.insert(69,1);
 list.remove(0);
 list.removeValue(3);
 console.log('Size:  ', list.getSize())
-list.print();
+// list.print();
 list.reverse();
 list.append(10);
+list.removeFromFront();
+list.removeFromBack();
+list.prepend(10);
 list.print();
+
+module.exports = linkedList
