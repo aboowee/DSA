@@ -11,7 +11,6 @@ class node {
 class binaryTree {
   constructor () {
     this.root = null;
-    this.depth = 0;
   }
   isEmpty () {
     return !this.root;
@@ -113,8 +112,40 @@ class binaryTree {
     return root.value;
   }
 
-  delete () {
+  delete (value) {
+    //If no children
+      //Remove node
+    //Need to keep track of parent node previous
+    //If children
+      //If left
+        //make that node the new parent node
+      //Else (right)
+        //Make that node the new parent node
+    this.root = this.deleteNode(this.root, value);
+  }
 
+  deleteNode (root, value) {
+    if (!root) {
+      return root;
+    }
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
+      //Found value
+    } else {
+      if (!root.left && !root.right) {
+        return null;
+      } else if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      } else {
+        root.value = this.minimum(root.right);
+        root.right = this.deleteNode(root.right, root.value);
+      }
+      return root;
+    }
   }
 
 }
@@ -131,6 +162,8 @@ console.log(tree.search(tree.root, 4));
 console.log(tree.search(tree.root, 8));
 console.log(tree.minimum(tree.root));
 console.log(tree.maximum(tree.root));
+// tree.delete(4);
+console.log(tree);
 
 // tree.preOrder(tree.root);
 // tree.inOrder(tree.root);
