@@ -99,6 +99,20 @@ class binaryTree {
     }
   }
 
+  minimum(root) {
+    while(root.left) {
+      root = root.left;
+    }
+    return root.value;
+  }
+
+  maximum(root) {
+    while(root.right) {
+      root = root.right;
+    }
+    return root.value;
+  }
+
   delete () {
 
   }
@@ -115,6 +129,8 @@ tree.insert(3);
 console.log(tree.search(tree.root, 5));
 console.log(tree.search(tree.root, 4));
 console.log(tree.search(tree.root, 8));
+console.log(tree.minimum(tree.root));
+console.log(tree.maximum(tree.root));
 
 // tree.preOrder(tree.root);
 // tree.inOrder(tree.root);
