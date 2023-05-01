@@ -40,8 +40,18 @@ class binaryTree {
       }
     }
   }
-  search (value) {
-
+  search (root, value) {
+    if (!root) {
+      return false;
+    } else {
+      if (root.value === value) {
+        return true;
+      } else if (value < root.value) {
+        return this.search(root.left, value)
+      } else if (value > root.value) {
+        return this.search(root.right, value);
+      }
+    }
   }
 
   depthFS (depth) {
@@ -63,3 +73,6 @@ console.log('Tree is empty: ', tree.isEmpty());
 tree.insert(5);
 tree.insert(4);
 tree.insert(6);
+console.log(tree.search(tree.root, 5));
+console.log(tree.search(tree.root, 4));
+console.log(tree.search(tree.root, 8));
