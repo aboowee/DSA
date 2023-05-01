@@ -54,10 +54,35 @@ class binaryTree {
     }
   }
 
-  depthFS (depth) {
-
+  //DEPTH FIRST SEARCH
+  //Visits all nodes starting from root, exploring far down branch and backtracking.
+  //Preorder Traverse -> Read node value, visit left subtree, visit right subtree
+  preOrder(root) {
+    if (root) {
+      console.log(root.value);
+      this.preOrder(root.left);
+      this.preOrder(root.right);
+    }
+  }
+  //Inorder Traverse -> Visit left subtree, read data of node, visit right subtree
+  inOrder(root) {
+    if (root) {
+      this.inOrder(root.left);
+      console.log(root.value);
+      this.inOrder(root.right);
+    }
+  }
+  //Postorder Traverse -> Visit left subtree, visit right subtree, read data of node
+  postOrder(root) {
+    if (root) {
+      this.postOrder(root.left);
+      this.postOrder(root.right);
+      console.log(root.value);
+    }
   }
 
+  //BREADTH FIRST SEARCH
+  //Explore all nodes at present depth before moving on to next
   breadthFS () {
 
   }
@@ -73,6 +98,12 @@ console.log('Tree is empty: ', tree.isEmpty());
 tree.insert(5);
 tree.insert(4);
 tree.insert(6);
+tree.insert(9);
+tree.insert(3);
 console.log(tree.search(tree.root, 5));
 console.log(tree.search(tree.root, 4));
 console.log(tree.search(tree.root, 8));
+
+tree.preOrder(tree.root);
+tree.inOrder(tree.root);
+tree.postOrder(tree.root);
