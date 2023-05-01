@@ -37,3 +37,5 @@ test.enqueue(4);
 test.enqueue(7);
 console.log(test.dequeue());
 console.log(test.print());
+
+module.exports = queue;

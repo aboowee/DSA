@@ -1,3 +1,5 @@
+const queue = require('./queue.js')
+
 class node {
   constructor(value) {
     this.value = value;
@@ -5,7 +7,6 @@ class node {
     this.right = null;
   }
 }
-
 
 class binaryTree {
   constructor () {
@@ -83,8 +84,19 @@ class binaryTree {
 
   //BREADTH FIRST SEARCH
   //Explore all nodes at present depth before moving on to next
-  breadthFS () {
-
+  breadthFS (root) {
+    let queueSearch = new queue();
+    queueSearch.enqueue(root);
+    while (queueSearch.size()) {
+      let current = queueSearch.dequeue();
+      console.log(current.value);
+      if (current.left) {
+        queueSearch.enqueue(current.left);
+      }
+      if (current.right) {
+        queueSearch.enqueue(current.right);
+      }
+    }
   }
 
   delete () {
@@ -104,6 +116,7 @@ console.log(tree.search(tree.root, 5));
 console.log(tree.search(tree.root, 4));
 console.log(tree.search(tree.root, 8));
 
-tree.preOrder(tree.root);
-tree.inOrder(tree.root);
-tree.postOrder(tree.root);
+// tree.preOrder(tree.root);
+// tree.inOrder(tree.root);
+// tree.postOrder(tree.root);
+// tree.breadthFS(tree.root);
